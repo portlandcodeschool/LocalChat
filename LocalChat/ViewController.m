@@ -54,7 +54,7 @@
     [UIView animateWithDuration:.2 animations:^{
         self.textEntryView.center = CGPointMake(self.textEntryView.center.x, self.textEntryView.center.y - keyboardSize.height);
     }];
-    
+  
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification

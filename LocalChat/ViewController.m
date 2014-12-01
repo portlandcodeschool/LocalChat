@@ -35,6 +35,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+    
     //Hide the keyboard if we navigate away from this view.
     [self hideKeyboard];
 }
@@ -80,11 +81,6 @@
         //Call layoutIfNeeded to finalize any existing changes.
         [self.view layoutIfNeeded];
     }];
-    
-    
-    //Bonus question!
-    
-    //This method fires when our notification for "UIKeyboardDidShowNotification" comes in. We set this up in our ViewDidload. There is another keyboard notification to listen for instead that can be used that will move the keyboard at the same time the keyboard rises instead of after the keyboard has already finished risen? By using this other keyboard notification, it also correctly handles transitions to  portrait of landscape.
 
 }
 

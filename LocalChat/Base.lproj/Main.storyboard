@@ -78,6 +78,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="chatTextView" destination="zRd-CL-gbk" id="h7I-3X-6Ju"/>
+                        <outlet property="keyboardHeight" destination="dC5-2i-LPZ" id="K7C-Qg-pha"/>
                         <outlet property="sendText" destination="eda-ES-o8C" id="0g3-O8-Uf9"/>
                         <outlet property="textEntryView" destination="xzD-FR-Ji4" id="taJ-LX-HeE"/>
                         <outlet property="textInput" destination="dvW-EL-spw" id="pL1-3R-CXg"/>

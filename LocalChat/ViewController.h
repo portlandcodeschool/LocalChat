@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
+
 @property (weak, nonatomic) IBOutlet UIView *textEntryView;
 @property (weak, nonatomic) IBOutlet UITextField *textInput;
 @property (weak, nonatomic) IBOutlet UIButton *sendText;

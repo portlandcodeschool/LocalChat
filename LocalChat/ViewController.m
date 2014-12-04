@@ -84,32 +84,6 @@
 
 }
 
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    //Get keyboard frame before it is shown (its there at this point, just hidden below the bootom of our screen.
-    CGRect keyboardStartFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    
-    //Get keyboard frame after it is shown.
-    CGRect keyboardEndFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    //Get the animation curve being used by the keyboard animation.
-    NSNumber *animationCurve = [[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-    
-    //Get the duration of the keyboard animation
-    NSNumber *duration = [[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    
-    //Compute the difference in the 2 keyboard y origins.
-    float origin = (keyboardStartFrame.origin.y - keyboardEndFrame.origin.y);
-    
-    [UIView animateWithDuration:duration.floatValue animations:^{
-        
-        [UIView setAnimationCurve:animationCurve.integerValue];
-        self.keyboardHeight.constant = origin;
-        [self.view layoutIfNeeded];
-    }];
-    
-}
-
 #pragma mark -
 #pragma mark UITextfield delegate methods
 

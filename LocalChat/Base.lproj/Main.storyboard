@@ -18,14 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-CL-gbk">
-                                <rect key="frame" x="0.0" y="64" width="320" height="474"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzD-FR-Ji4">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzD-FR-Ji4" userLabel="view">
                                 <rect key="frame" x="0.0" y="538" width="320" height="30"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvW-EL-spw">
@@ -48,24 +41,31 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="eda-ES-o8C" firstAttribute="trailing" secondItem="xzD-FR-Ji4" secondAttribute="trailingMargin" id="6Pi-ia-e4R"/>
-                                    <constraint firstAttribute="bottom" secondItem="eda-ES-o8C" secondAttribute="bottom" id="Cqo-7O-2pV"/>
-                                    <constraint firstItem="dvW-EL-spw" firstAttribute="leading" secondItem="xzD-FR-Ji4" secondAttribute="leading" id="J9V-JE-MVM"/>
+                                    <constraint firstItem="eda-ES-o8C" firstAttribute="trailing" secondItem="xzD-FR-Ji4" secondAttribute="trailingMargin" id="GUA-Qk-Xty"/>
                                     <constraint firstItem="eda-ES-o8C" firstAttribute="leading" secondItem="dvW-EL-spw" secondAttribute="trailing" constant="8" symbolic="YES" id="Kop-jn-w5s"/>
                                     <constraint firstItem="eda-ES-o8C" firstAttribute="top" secondItem="dvW-EL-spw" secondAttribute="top" id="RV3-ZX-tse"/>
-                                    <constraint firstItem="eda-ES-o8C" firstAttribute="top" secondItem="xzD-FR-Ji4" secondAttribute="top" id="V9a-nJ-Epv"/>
+                                    <constraint firstItem="dvW-EL-spw" firstAttribute="top" secondItem="xzD-FR-Ji4" secondAttribute="top" id="i0a-Ok-eI5"/>
+                                    <constraint firstAttribute="bottom" secondItem="dvW-EL-spw" secondAttribute="bottom" id="qxz-Wb-T69"/>
+                                    <constraint firstItem="dvW-EL-spw" firstAttribute="leading" secondItem="xzD-FR-Ji4" secondAttribute="leading" id="sNM-nw-0J1"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-CL-gbk">
+                                <rect key="frame" x="0.0" y="64" width="320" height="474"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xzD-FR-Ji4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="FcN-aB-2P7"/>
-                            <constraint firstAttribute="trailing" secondItem="xzD-FR-Ji4" secondAttribute="trailing" id="Fiq-qo-kcg"/>
-                            <constraint firstItem="zRd-CL-gbk" firstAttribute="leading" secondItem="xzD-FR-Ji4" secondAttribute="leading" id="RDU-fh-r2Q"/>
-                            <constraint firstItem="zRd-CL-gbk" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="VPR-re-m5r"/>
-                            <constraint firstItem="xzD-FR-Ji4" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="dC5-2i-LPZ"/>
-                            <constraint firstItem="xzD-FR-Ji4" firstAttribute="top" secondItem="zRd-CL-gbk" secondAttribute="bottom" id="ix8-8w-crO"/>
-                            <constraint firstItem="zRd-CL-gbk" firstAttribute="trailing" secondItem="xzD-FR-Ji4" secondAttribute="trailing" id="nu5-Bs-a7d"/>
+                            <constraint firstItem="zRd-CL-gbk" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="3FN-hU-9od"/>
+                            <constraint firstAttribute="trailing" secondItem="zRd-CL-gbk" secondAttribute="trailing" id="8EA-3B-mV2"/>
+                            <constraint firstItem="xzD-FR-Ji4" firstAttribute="top" secondItem="zRd-CL-gbk" secondAttribute="bottom" id="Bkc-40-vuU"/>
+                            <constraint firstItem="xzD-FR-Ji4" firstAttribute="leading" secondItem="zRd-CL-gbk" secondAttribute="leading" id="Cni-Eb-1pv"/>
+                            <constraint firstItem="xzD-FR-Ji4" firstAttribute="trailing" secondItem="zRd-CL-gbk" secondAttribute="trailing" id="d8J-lp-j8n"/>
+                            <constraint firstItem="zRd-CL-gbk" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="pgT-hc-QOd"/>
+                            <constraint firstItem="xzD-FR-Ji4" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="uuY-Ue-Arc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DvF-Ka-oEP">
@@ -78,7 +78,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="chatTextView" destination="zRd-CL-gbk" id="h7I-3X-6Ju"/>
-                        <outlet property="keyboardHeight" destination="dC5-2i-LPZ" id="K7C-Qg-pha"/>
+                        <outlet property="keyboardHeight" destination="uuY-Ue-Arc" id="aas-hH-hGP"/>
                         <outlet property="sendText" destination="eda-ES-o8C" id="0g3-O8-Uf9"/>
                         <outlet property="textEntryView" destination="xzD-FR-Ji4" id="taJ-LX-HeE"/>
                         <outlet property="textInput" destination="dvW-EL-spw" id="pL1-3R-CXg"/>

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "MPCManager.h"
 
 @interface LocalChatTests : XCTestCase
 
@@ -23,6 +24,11 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+-(void)testMyMPCManagerNotNil {
+    MPCManager *mpc = [[MPCManager alloc] init];
+    XCTAssertNotNil(mpc, @"Nil");
 }
 
 - (void)testExample {

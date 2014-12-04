@@ -15,6 +15,7 @@
 		8446D9F51A1EE523009AF6F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8446D9F31A1EE523009AF6F9 /* LaunchScreen.xib */; };
 		8446DA011A1EE523009AF6F9 /* LocalChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446DA001A1EE523009AF6F9 /* LocalChatTests.m */; };
 		8478EE3C1A25619E00FF48AE /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478EE3B1A25619E00FF48AE /* ConnectViewController.m */; };
+		848C870E1A2D7A7700EABE71 /* MPCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 848C870D1A2D7A7700EABE71 /* MPCManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		8446DA001A1EE523009AF6F9 /* LocalChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalChatTests.m; sourceTree = "<group>"; };
 		8478EE3A1A25619E00FF48AE /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		8478EE3B1A25619E00FF48AE /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		848C870C1A2D7A7700EABE71 /* MPCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCManager.h; sourceTree = "<group>"; };
+		848C870D1A2D7A7700EABE71 /* MPCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				8446D9E41A1EE523009AF6F9 /* Supporting Files */,
 				8478EE3A1A25619E00FF48AE /* ConnectViewController.h */,
 				8478EE3B1A25619E00FF48AE /* ConnectViewController.m */,
+				848C870C1A2D7A7700EABE71 /* MPCManager.h */,
+				848C870D1A2D7A7700EABE71 /* MPCManager.m */,
 			);
 			path = LocalChat;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				8446D9ED1A1EE523009AF6F9 /* ViewController.m in Sources */,
 				8446D9EA1A1EE523009AF6F9 /* AppDelegate.m in Sources */,
 				8446D9E71A1EE523009AF6F9 /* main.m in Sources */,
+				848C870E1A2D7A7700EABE71 /* MPCManager.m in Sources */,
 				8478EE3C1A25619E00FF48AE /* ConnectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

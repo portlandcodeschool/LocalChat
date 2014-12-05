@@ -17,12 +17,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    myAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.connectedPeers = myAppDelegate.mpcManager.connectedPeers;
+}
+
+-(void)addNotifications {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MPCDidChangeState:) name:@"MPCDidChangeStateNotification" object:nil];
+}
+
+-(void)MPCDidChangeState:(NSNotification *) notification {
+    self.connectedPeers = myAppDelegate.mpcManager.connectedPeers;
+    [self.connectionsTableView reloadData];
+
 }
 
 - (IBAction)browse:(id)sender {
+    [myAppDelegate.mpcManager setupMCBrowser];
+    myAppDelegate.mpcManager.browser.delegate = self;
+    [self presentViewController:[myAppDelegate.mpcManager browser] animated:YES completion:^{
+        
+    }];
     
 }
 
+-(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
+    [myAppDelegate.mpcManager.browser dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+}
+
+-(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
+    [myAppDelegate.mpcManager.browser dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+}
 #pragma -mark
 #pragma TableView datasource methods
 
@@ -33,7 +64,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //how many rows are in each of the above sections (Total number of cells needing to be displayed).
-    return 5;
+    return self.connectedPeers.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,6 +86,7 @@
     }
     
     // Configure the cell.
+    cell.textLabel.text = [self.connectedPeers objectAtIndex:indexPath.row];
     
     return cell;
     

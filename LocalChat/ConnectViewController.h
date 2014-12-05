@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface ConnectViewController : UIViewController
+@interface ConnectViewController : UIViewController <MCBrowserViewControllerDelegate>  {
+    AppDelegate *myAppDelegate;
+}
+@property (weak, nonatomic) IBOutlet UITableView *connectionsTableView;
+@property (nonatomic, strong) NSArray *connectedPeers;
 
 @end

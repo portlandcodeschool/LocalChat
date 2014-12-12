@@ -89,6 +89,15 @@
 
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
     
+    //Package up our incoming data into an NSDictionary
+    NSDictionary *dict = @{@"data": data,
+                           @"peerID": peerID
+                           };
+    
+    //Send out a notification to the rest of our app and include the dictionar of data so the username and text can be worked with.
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MPCDidReceiveData" object:nil userInfo:dict];
+
+    
 }
 
 @end

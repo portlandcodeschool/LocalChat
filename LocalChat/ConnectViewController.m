@@ -19,29 +19,45 @@
     // Do any additional setup after loading the view.
     myAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.connectedPeers = myAppDelegate.mpcManager.connectedPeers;
+    
+    //Dont forget to actually run the method that adds our notification. We moved it out of the viewdidload and into its own incase we wanted to add other notifications. This is purely a developer preference.
+    [self addNotifications];
 }
 
 -(void)addNotifications {
     
+    //Subscribe to MPCDidChangeStateNotification notifications. This is how we get told that we have added a new peerID to our list of connections
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MPCDidChangeState:) name:@"MPCDidChangeStateNotification" object:nil];
 }
 
 -(void)MPCDidChangeState:(NSNotification *) notification {
+    //When this notification comes in, updated the local array of peers, with the list of peers in the mpcmanager.
     self.connectedPeers = myAppDelegate.mpcManager.connectedPeers;
+    
+    //Reload the table view so that it displays the updated connectedPeers info.
     [self.connectionsTableView reloadData];
 
 }
 
 - (IBAction)browse:(id)sender {
+    //setup the MPC browser
     [myAppDelegate.mpcManager setupMCBrowser];
+    
+    //Assign this viewcontroller as its delegate. This will tell us when DONE or CANCEL is pressed so we can dismiss the browser from our view. Dismissing a view is usually dont on the viewcontroller that preseneted it.
     myAppDelegate.mpcManager.browser.delegate = self;
+    
+    //Present the mpcManager browser.
     [self presentViewController:[myAppDelegate.mpcManager browser] animated:YES completion:^{
-        
+     //This completion block would run after the view is presented. You might use this for some custom code need after the view was displayed.
     }];
     
 }
 
+#pragma -mark
+#pragma mpcBrowser delegate calls
 -(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
+    
+    //Dismiss the mpcManager browser.
     [myAppDelegate.mpcManager.browser dismissViewControllerAnimated:YES completion:^{
         
     }];
@@ -49,6 +65,8 @@
 }
 
 -(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
+    
+    //Dismiss the mpcManager browser.
     [myAppDelegate.mpcManager.browser dismissViewControllerAnimated:YES completion:^{
         
     }];
@@ -107,15 +125,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -32,6 +33,54 @@
     
     //Add this gesture recognizer to our views list of recognizers.
     [self.view addGestureRecognizer:tap];
+}
+
+- (IBAction)send:(id)sender {
+    
+    [self sendMyMessage];
+    
+}
+
+-(void)sendMyMessage {
+    
+    //We dont want to send a blank message, check to make sure there is at least one character in the text box.
+    if (self.textInput.text.length > 0) {
+        
+        //make a reference to our existing AppDelegate
+        AppDelegate *myAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        //Convert the text in our input to NSData since this is the format we need in the sendData method below.
+        NSData *dataToSend = [self.textInput.text dataUsingEncoding:NSUTF8StringEncoding];
+        
+        //We also need to create an NSError reference in case the method below returns an error. Returning this error is a function of this particular method.
+        NSError *error;
+        
+        //We need an NSArray type class, the method will crash if given the mutable array that exists in the MPCManager.
+        NSArray *allPeers = myAppDelegate.mpcManager.connectedPeers;
+        
+        //In our mpcManager session object, run this method to send the data.
+        [myAppDelegate.mpcManager.session sendData:dataToSend toPeers:allPeers withMode:MCSessionSendDataReliable error:&error];
+        
+        //Format the display of our text chat view  so it is clear that this message is from you and also displays the text you wrote.
+        NSString *formatedTextWithDisplayName = [NSString stringWithFormat:@"Me:\n %@\n\n",self.textInput.text];
+        
+        //Using our custom method, pass the formatted string to display
+        [self updateChatViewWithString:formatedTextWithDisplayName];
+        
+        //Clear out our text input view (where we type our message into) since the message has been sent.
+        self.textInput.text = @"";
+    
+    }
+    
+    //Hide the keyboard
+    [self hideKeyboard];
+    
+}
+
+-(void)updateChatViewWithString:(NSString *)textForView {
+    //Use this method to update our chatView window by taking the existing chat text view text and appending the new text that came in as an argument - textForView.
+    self.chatTextView.text = [self.chatTextView.text stringByAppendingString:textForView];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -90,8 +139,13 @@
 //This delegate method gets called when the user presses return.
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //Send our message if the user hits return
+    [self sendMyMessage];
+    
+    //We can remove this [self hideKeyboard] call in this method since our [self sendMyMessage] also calls [self hidekeyboard]
+    
     //Dismiss the keyboard by calling this method.
-    [self hideKeyboard];
+   // [self hideKeyboard];
     
     //Needs a return value to know if a return should be inserted in the textfield.
     return NO;

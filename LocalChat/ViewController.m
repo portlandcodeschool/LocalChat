@@ -19,11 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    //Notify this ViewController when the keyboard is was shown.
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardWillChangeFrameNotification
-                                               object:nil];
+    [self addNotifications];
     
     //Adding a tap gesture recognizer so if someone taps the screen, it will hide the keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -33,6 +29,37 @@
     
     //Add this gesture recognizer to our views list of recognizers.
     [self.view addGestureRecognizer:tap];
+}
+
+-(void)addNotifications {
+    //Notify this ViewController when the keyboard is was shown.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveData:) name:@"MPCDidReceiveData" object:nil];
+    
+    
+}
+
+-(void) didReceiveData:(NSNotification *)notification {
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    
+    NSString *peerDisplayName = peerID.displayName;
+    
+    NSData *dataReceived = [[notification userInfo] objectForKey:@"data"];
+    
+    NSString *textFromData = [[NSString alloc] initWithData:dataReceived encoding:NSUTF8StringEncoding];
+    
+    NSString *formatedTextWithDisplayName = [NSString stringWithFormat:@"%@:\n %@\n\n",peerDisplayName,textFromData];
+    
+    [self performSelectorOnMainThread:@selector(updateChatViewWithString:) withObject:formatedTextWithDisplayName waitUntilDone:NO];
+    
+    
+    //[self updateChatViewWithString:formatedTextWithDisplayName];
+    
+    
 }
 
 - (IBAction)send:(id)sender {
@@ -56,11 +83,14 @@
         NSError *error;
         
         //We need an NSArray type class, the method will crash if given the mutable array that exists in the MPCManager.
-        NSArray *allPeers = myAppDelegate.mpcManager.connectedPeers;
+        NSArray *allPeers = myAppDelegate.mpcManager.session.connectedPeers;
         
         //In our mpcManager session object, run this method to send the data.
         [myAppDelegate.mpcManager.session sendData:dataToSend toPeers:allPeers withMode:MCSessionSendDataReliable error:&error];
         
+        if (error) {
+            NSLog(@"error = %@", error);
+        }
         //Format the display of our text chat view  so it is clear that this message is from you and also displays the text you wrote.
         NSString *formatedTextWithDisplayName = [NSString stringWithFormat:@"Me:\n %@\n\n",self.textInput.text];
         
@@ -145,7 +175,7 @@
     //We can remove this [self hideKeyboard] call in this method since our [self sendMyMessage] also calls [self hidekeyboard]
     
     //Dismiss the keyboard by calling this method.
-   // [self hideKeyboard];
+    //[self hideKeyboard];
     
     //Needs a return value to know if a return should be inserted in the textfield.
     return NO;

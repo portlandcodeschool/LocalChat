@@ -21,7 +21,7 @@
         
         self.connectedPeers = [[NSMutableArray alloc] init];
         
-        [self setupPeerAndSessionWithDisplayName:@"Erick"];
+        [self setupPeerAndSessionWithDisplayName:@"Erick iPod2"];
         [self advertiseSelf:TRUE];
         
     }

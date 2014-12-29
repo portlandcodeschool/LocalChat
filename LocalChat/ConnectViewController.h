@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface ConnectViewController : UIViewController <MCBrowserViewControllerDelegate>  {
+@interface ConnectViewController : UIViewController <MCBrowserViewControllerDelegate, UITextFieldDelegate>  {
     AppDelegate *myAppDelegate;
 }
 @property (weak, nonatomic) IBOutlet UITableView *connectionsTableView;
 @property (nonatomic, strong) NSArray *connectedPeers;
+@property (weak, nonatomic) IBOutlet UITextField *displayNameText;
+@property (weak, nonatomic) IBOutlet UISwitch *visibilitySwitch;
 
 @end

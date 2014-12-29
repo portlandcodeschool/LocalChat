@@ -111,6 +111,11 @@
     //Use this method to update our chatView window by taking the existing chat text view text and appending the new text that came in as an argument - textForView.
     self.chatTextView.text = [self.chatTextView.text stringByAppendingString:textForView];
     
+    if(self.chatTextView.text.length > 0 ) {
+        NSRange bottom = NSMakeRange(self.chatTextView.text.length -1, 1);
+        [self.chatTextView scrollRangeToVisible:bottom];
+    }
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

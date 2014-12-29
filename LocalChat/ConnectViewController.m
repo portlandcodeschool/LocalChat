@@ -22,6 +22,14 @@
     
     //Dont forget to actually run the method that adds our notification. We moved it out of the viewdidload and into its own incase we wanted to add other notifications. This is purely a developer preference.
     [self addNotifications];
+    
+    BOOL savedVisibility = [[NSUserDefaults standardUserDefaults] boolForKey:@"visibility"];
+    
+    self.visibilitySwitch.on = savedVisibility;
+    
+    self.displayNameText.text = myAppDelegate.mpcManager.peerID.displayName;
+
+
 }
 
 -(void)addNotifications {
@@ -50,6 +58,15 @@
     [self presentViewController:[myAppDelegate.mpcManager browser] animated:YES completion:^{
      //This completion block would run after the view is presented. You might use this for some custom code need after the view was displayed.
     }];
+    
+}
+
+- (IBAction)visibilityChanged:(id)sender {
+    
+    [myAppDelegate.mpcManager advertiseSelf:self.visibilitySwitch.isOn];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:self.visibilitySwitch.isOn forKey:@"visibility"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
@@ -119,6 +136,35 @@
     //Show an animated deselection of the selected cell.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+}
+
+#pragma -mark
+#pragma UITextfield
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [self.displayNameText resignFirstResponder];
+    
+    if (self.visibilitySwitch.isOn) {
+        [myAppDelegate.mpcManager advertiseSelf:NO];
+    }
+    
+    myAppDelegate.mpcManager.peerID = nil;
+    myAppDelegate.mpcManager.session = nil;
+    myAppDelegate.mpcManager.browser = nil;
+    myAppDelegate.mpcManager.advertiser = nil;
+    
+    
+    [myAppDelegate.mpcManager setupPeerAndSessionWithDisplayName:self.displayNameText.text];
+    
+    [myAppDelegate.mpcManager advertiseSelf:self.visibilitySwitch.isOn];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:self.displayNameText.text forKey:@"displayName"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

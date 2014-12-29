@@ -21,8 +21,19 @@
         
         self.connectedPeers = [[NSMutableArray alloc] init];
         
-        [self setupPeerAndSessionWithDisplayName:@"Erick iPod2"];
-        [self advertiseSelf:TRUE];
+        NSString *savedDisplayName = [[NSUserDefaults standardUserDefaults] objectForKey:@"displayName"];
+        
+        if (savedDisplayName) {
+            [self setupPeerAndSessionWithDisplayName:savedDisplayName];
+        } else {
+            [self setupPeerAndSessionWithDisplayName:@"Erick iPod2"];
+        }
+        
+        
+        BOOL savedVisibility = [[NSUserDefaults standardUserDefaults] boolForKey:@"visibility"];
+        
+        
+        [self advertiseSelf:savedVisibility];
         
     }
     

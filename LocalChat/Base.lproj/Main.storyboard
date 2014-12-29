@@ -52,7 +52,7 @@
                                     <constraint firstItem="dvW-EL-spw" firstAttribute="leading" secondItem="xzD-FR-Ji4" secondAttribute="leading" id="sNM-nw-0J1"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-CL-gbk">
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-CL-gbk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="474"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -102,8 +102,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Oa-vz-S3Q">
+                                <rect key="frame" x="0.0" y="64" width="320" height="86"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="py8-9T-fBk">
+                                        <rect key="frame" x="8" y="8" width="304" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="197-Sx-8k1" id="mwy-Nu-MVt"/>
+                                        </connections>
+                                    </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOn-fv-Ghk">
+                                        <rect key="frame" x="263" y="46" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="visibilityChanged:" destination="197-Sx-8k1" eventType="valueChanged" id="1ce-NF-xH8"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visible to others:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSf-my-lYu">
+                                        <rect key="frame" x="8" y="51" width="247" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="qSf-my-lYu" firstAttribute="leading" secondItem="0Oa-vz-S3Q" secondAttribute="leadingMargin" id="2bg-Us-YU4"/>
+                                    <constraint firstItem="qSf-my-lYu" firstAttribute="centerY" secondItem="tOn-fv-Ghk" secondAttribute="centerY" id="5rt-2M-ltl"/>
+                                    <constraint firstItem="qSf-my-lYu" firstAttribute="leading" secondItem="py8-9T-fBk" secondAttribute="leading" id="E5c-wk-jVW"/>
+                                    <constraint firstItem="py8-9T-fBk" firstAttribute="top" secondItem="0Oa-vz-S3Q" secondAttribute="topMargin" id="IHc-th-yMf"/>
+                                    <constraint firstAttribute="bottom" secondItem="tOn-fv-Ghk" secondAttribute="bottom" constant="9" id="WR1-CK-goL"/>
+                                    <constraint firstItem="py8-9T-fBk" firstAttribute="trailing" secondItem="0Oa-vz-S3Q" secondAttribute="trailingMargin" id="dZZ-rB-oUH"/>
+                                    <constraint firstItem="qSf-my-lYu" firstAttribute="top" secondItem="py8-9T-fBk" secondAttribute="bottom" constant="13" id="h2A-5c-X3d"/>
+                                    <constraint firstItem="tOn-fv-Ghk" firstAttribute="leading" secondItem="qSf-my-lYu" secondAttribute="trailing" constant="8" symbolic="YES" id="j9S-xP-P8r"/>
+                                    <constraint firstItem="py8-9T-fBk" firstAttribute="trailing" secondItem="tOn-fv-Ghk" secondAttribute="trailing" id="qYJ-gu-lSm"/>
+                                    <constraint firstItem="tOn-fv-Ghk" firstAttribute="top" secondItem="py8-9T-fBk" secondAttribute="bottom" constant="8" symbolic="YES" id="vk0-C9-QWM"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cC1-iD-uFp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="150" width="320" height="418"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="197-Sx-8k1" id="kzb-va-GHz"/>
@@ -113,10 +151,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cC1-iD-uFp" firstAttribute="bottom" secondItem="BW7-br-Sdl" secondAttribute="top" id="8Ra-aw-yWf"/>
-                            <constraint firstItem="cC1-iD-uFp" firstAttribute="leading" secondItem="1gJ-TP-LQV" secondAttribute="leading" id="938-BR-p5Q"/>
-                            <constraint firstAttribute="trailing" secondItem="cC1-iD-uFp" secondAttribute="trailing" id="ISC-1Q-ZxG"/>
-                            <constraint firstItem="cC1-iD-uFp" firstAttribute="top" secondItem="1gJ-TP-LQV" secondAttribute="top" id="Ibo-ei-TkE"/>
+                            <constraint firstItem="cC1-iD-uFp" firstAttribute="trailing" secondItem="0Oa-vz-S3Q" secondAttribute="trailing" id="2pR-o8-6pD"/>
+                            <constraint firstItem="0Oa-vz-S3Q" firstAttribute="leading" secondItem="cC1-iD-uFp" secondAttribute="leading" id="CWo-Yw-URF"/>
+                            <constraint firstItem="cC1-iD-uFp" firstAttribute="leading" secondItem="1gJ-TP-LQV" secondAttribute="leading" id="FUv-Qx-vJ7"/>
+                            <constraint firstAttribute="trailing" secondItem="0Oa-vz-S3Q" secondAttribute="trailing" id="Pbt-Hb-4SM"/>
+                            <constraint firstItem="cC1-iD-uFp" firstAttribute="top" secondItem="0Oa-vz-S3Q" secondAttribute="bottom" id="bq1-6x-3e0"/>
+                            <constraint firstItem="cC1-iD-uFp" firstAttribute="bottom" secondItem="BW7-br-Sdl" secondAttribute="top" id="koX-cZ-CR1"/>
+                            <constraint firstItem="0Oa-vz-S3Q" firstAttribute="top" secondItem="byR-ZH-vZZ" secondAttribute="bottom" id="wob-LM-jiG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Connections" id="eLV-tK-KDx">
@@ -129,6 +170,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="connectionsTableView" destination="cC1-iD-uFp" id="Lm5-EV-hHq"/>
+                        <outlet property="displayNameText" destination="py8-9T-fBk" id="6rz-v4-Uih"/>
+                        <outlet property="visibilitySwitch" destination="tOn-fv-Ghk" id="gXr-2p-uRI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9q-1Y-qup" userLabel="First Responder" sceneMemberID="firstResponder"/>
